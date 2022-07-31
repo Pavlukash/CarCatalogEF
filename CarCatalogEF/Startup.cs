@@ -24,6 +24,7 @@ namespace CarCatalogEntityFramework
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ICar, CarService>();
+            services.AddScoped<ICustomer, CustomerService>();
 
             services.AddControllers();
 

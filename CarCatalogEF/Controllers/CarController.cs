@@ -7,11 +7,11 @@ namespace СarCatalog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class CarController : ControllerBase
     {
         private ICar _repo { get; }
 
-        public ValuesController(ICar repo)
+        public CarController(ICar repo)
         {
             _repo = repo;
         }
