@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCatalogEntityFramework", "CarCatalogEntityFramework\CarCatalogEntityFramework.csproj", "{4E98AA2A-450B-41B1-8180-AE0264DDA864}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCatalogEF", "CarCatalogEF\CarCatalogEF.csproj", "{4E98AA2A-450B-41B1-8180-AE0264DDA864}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CarCatalogEntityFramework.Models;
-using CarCatalogEntityFramework.Interfaces;
+using CarCatalogEntityFramework.DAL.Interfaces;
 using CarCatalogEntityFramework.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace CarCatalogEntityFramework.Services
 {
-    public class CarService : ICarRepository
+    public class CarService : ICar
     {
         private ApplicationContext _db { get; }
 

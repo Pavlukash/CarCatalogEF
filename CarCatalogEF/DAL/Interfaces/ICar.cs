@@ -4,7 +4,7 @@ using CarCatalogEntityFramework.Models;
 
 namespace CarCatalogEntityFramework.DAL.Interfaces
 {
-    public interface ICarRepository
+    public interface ICar
     {
         Task<Car> Create(Car car);
         Task Delete(int id);
