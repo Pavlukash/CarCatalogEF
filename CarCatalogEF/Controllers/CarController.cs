@@ -1,32 +1,32 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using CarCatalogEntityFramework.Models;
-using CarCatalogEntityFramework.DAL.Interfaces;
+using CarCatalog.Domain.Entities;
+using CarCatalog.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-namespace СarCatalog.Controllers
+namespace CarCatalogEntityFramework.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CarController : ControllerBase
     {
-        private ICar _repo { get; }
+        private ICarService CarService { get; }
 
-        public CarController(ICar repo)
+        public CarController(ICarService carService)
         {
-            _repo = repo;
+            CarService = carService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetCars()
         {
-            var result = await _repo.GetCars();
+            var result = await CarService.GetCars();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var car = await _repo.Get(id);
+            var car = await CarService.Get(id);
             if (car == null)
             {
                 return NotFound();
@@ -36,23 +36,23 @@ namespace СarCatalog.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Сreate([FromBody] Car car)
+        public async Task<IActionResult> Сreate([FromBody] CarEntity carEntity)
         {
-            var newCar = await _repo.Create(car);
+            var newCar = await CarService.Create(carEntity);
             return Ok(newCar);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Car car)
+        public async Task<IActionResult> Update(int id, CarEntity carEntity)
         {
-            await _repo.Update(id, car);
+            await CarService.Update(id, carEntity);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _repo.Delete(id);
+            await CarService.Delete(id);
             return NoContent();
         }
     }

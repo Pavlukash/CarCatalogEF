@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCatalogEF", "CarCatalogEF\CarCatalogEF.csproj", "{4E98AA2A-450B-41B1-8180-AE0264DDA864}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCatalog.Services", "CarCatalog.Services\CarCatalog.Services.csproj", "{B591081A-2EB5-4620-B869-CB9556B9597B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarCatalog.Domain", "CarCatalog.Domain\CarCatalog.Domain.csproj", "{07C069A6-78DA-4729-A195-21D048781F56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{4E98AA2A-450B-41B1-8180-AE0264DDA864}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E98AA2A-450B-41B1-8180-AE0264DDA864}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E98AA2A-450B-41B1-8180-AE0264DDA864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B591081A-2EB5-4620-B869-CB9556B9597B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B591081A-2EB5-4620-B869-CB9556B9597B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B591081A-2EB5-4620-B869-CB9556B9597B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B591081A-2EB5-4620-B869-CB9556B9597B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C069A6-78DA-4729-A195-21D048781F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C069A6-78DA-4729-A195-21D048781F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C069A6-78DA-4729-A195-21D048781F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C069A6-78DA-4729-A195-21D048781F56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

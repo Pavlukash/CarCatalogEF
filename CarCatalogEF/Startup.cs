@@ -1,6 +1,6 @@
-using CarCatalogEntityFramework.Contexts;
-using CarCatalogEntityFramework.DAL.Interfaces;
-using CarCatalogEntityFramework.Services;
+using CarCatalog.Domain.Contexts;
+using CarCatalog.Services.Interfaces;
+using CarCatalog.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,13 +23,13 @@ namespace CarCatalogEntityFramework
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ICar, CarService>();
-            services.AddScoped<ICustomer, CustomerService>();
+            services.AddScoped<ICarService, CarService>();
+            services.AddScoped<ICustomerService, CustomerService>();
 
             services.AddControllers();
 
             var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationContext>(options =>
+            services.AddDbContext<CarCatalogContext>(options =>
                 options.UseSqlServer(connection));
             
             services.AddSwaggerGen(c =>

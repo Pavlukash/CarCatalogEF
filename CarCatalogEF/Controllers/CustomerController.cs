@@ -1,67 +1,68 @@
-using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 using System.Threading.Tasks;
-using CarCatalogEntityFramework.Models;
-using CarCatalogEntityFramework.DAL.Interfaces;
+using CarCatalog.Domain.Models;
+using CarCatalog.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-namespace СarCatalog.Controllers
+namespace CarCatalogEntityFramework.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private ICustomer _repo { get; }
+        private ICustomerService CustomerService { get; }
 
-        public CustomerController(ICustomer repo)
+        public CustomerController(ICustomerService customerService)
         {
-            _repo = repo;
+            CustomerService = customerService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCustomers()
+        public async Task<IActionResult> GetCustomers(CancellationToken cancellationToken)
         {
-            var result = await _repo.GetCustomers();
+            var result = await CustomerService.GetCustomers(cancellationToken);
+            
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(int id, CancellationToken cancellationToken)
         {
-            var customer = await _repo.Get(id);
-            
-            if (customer == null)
-            {
-                return NotFound();
-            }
+            var customer = await CustomerService.Get(id, cancellationToken);
 
             return Ok(customer);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Сreate([FromBody] Customer customer)
+        public async Task<IActionResult> Сreate([FromBody] CustomerDto customerEntity)
         {
-            var newCustomer = await _repo.Create(customer);
+            var newCustomer = await CustomerService.Create(customerEntity, CancellationToken.None);
+            
             return Ok(newCustomer);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Customer customer)
+        public async Task<IActionResult> Update(int id,[FromBody] CustomerDto customerEntity)
         {
-            await _repo.Update(id, customer);
-            return NoContent();
+            var result = await CustomerService.Update(id, customerEntity, CancellationToken.None);
+            
+            return Ok(result);
         }
         
         [HttpPut("{id}")]
-        public async Task<IActionResult> ChangeCarId(int id, Customer customer)
+        public async Task<IActionResult> ChangeCarId(int id,[FromQuery] int carId)
         {
-            await _repo.ChangeCarId(id, customer);
-            return NoContent();
+            var result = await CustomerService.ChangeCustomersCar(id, carId, CancellationToken.None);
+            
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _repo.Delete(id);
-            return NoContent();
+            var result = await CustomerService.Delete(id, CancellationToken.None);
+            
+            return Ok(result);
         }
     }
 }
