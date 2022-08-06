@@ -1,5 +1,6 @@
+using System.Threading;
 using System.Threading.Tasks;
-using CarCatalog.Domain.Entities;
+using CarCatalog.Domain.Models;
 using CarCatalog.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,43 +18,43 @@ namespace CarCatalogEntityFramework.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCars()
+        public async Task<IActionResult> GetCars(CancellationToken cancellationToken)
         {
-            var result = await CarService.GetCars();
+            var result = await CarService.GetCars(cancellationToken);
+            
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(int id, CancellationToken cancellationToken)
         {
-            var car = await CarService.Get(id);
-            if (car == null)
-            {
-                return NotFound();
-            }
+            var car = await CarService.Get(id, cancellationToken);
 
             return Ok(car);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Сreate([FromBody] CarEntity carEntity)
+        public async Task<IActionResult> Сreate([FromBody] CarDto carEntity)
         {
-            var newCar = await CarService.Create(carEntity);
+            var newCar = await CarService.Create(carEntity, CancellationToken.None);
+            
             return Ok(newCar);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, CarEntity carEntity)
+        public async Task<IActionResult> Update(int id,[FromBody] CarDto carEntity)
         {
-            await CarService.Update(id, carEntity);
-            return NoContent();
+            var result = await CarService.Update(id, carEntity, CancellationToken.None);
+            
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await CarService.Delete(id);
-            return NoContent();
+            var result = await CarService.Delete(id, CancellationToken.None);
+            
+            return Ok(result);
         }
     }
 }

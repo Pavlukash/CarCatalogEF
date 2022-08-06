@@ -11,16 +11,16 @@ namespace CarCatalog.Domain.Entities
 
         [Required]
         [MaxLength(20)]
-        public string Brand { get; set; } = null!;
+        public string? Brand { get; set; } = null!;
         
         [Required]
         [MaxLength(20)]
-        public string Model { get; set; } = null!;
+        public string? Model { get; set; } = null!;
         
         [Required]
-        public BodyStyleType CarType { get; set; } 
-        public SetupType Setup { get; set; } 
-        public decimal Price { get; set; } 
+        public BodyStyleType? CarType { get; set; } 
+        public SetupType? Setup { get; set; } 
+        public decimal? Price { get; set; } 
         
         public CustomerEntity? CustomerEntity { get; set; }
     }

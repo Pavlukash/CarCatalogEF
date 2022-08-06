@@ -48,17 +48,17 @@ namespace CarCatalog.Services.Services
             return result;
         }
 
-        public async Task<CustomerDto> Create(CustomerDto data, CancellationToken cancellationToken)
+        public async Task<CustomerDto> Create(CustomerDto newCustomerEntity, CancellationToken cancellationToken)
         {
-            ValidateCreateRequest(data);
+            ValidateCreateRequest(newCustomerEntity);
             
             var newEntity = new CustomerEntity
             {
-                CarId = data.CarId,
-                FirstName = data.FirstName!,
-                LastName = data.LastName!,
-                Email = data.Email!,
-                PhoneNumber = data.PhoneNumber
+                CarId = newCustomerEntity.CarId,
+                FirstName = newCustomerEntity.FirstName!,
+                LastName = newCustomerEntity.LastName!,
+                Email = newCustomerEntity.Email!,
+                PhoneNumber = newCustomerEntity.PhoneNumber
             };
 
             CarCatalogContext.Customers.Add(newEntity);
